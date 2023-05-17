@@ -13,6 +13,7 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 # sudo chmod 666 /var/run/docker.sock  ## da vedere: https://stackoverflow.com/questions/48957195/how-to-fix-docker-got-permission-denied-issue , vedi la seconda soluzione, che porta a un link dove sono presenti: https://github.com/jgsqware/clairctl/issues/60#issuecomment-358698788 e https://github.com/jgsqware/clairctl/issues/60#issuecomment-403620205
 # Qui, se non esegui il chmode del socket Unix (credo si dica così), allora devi fare il logout/reboot della macchina in cui stai installando Docker, quindi ogni successivo comando è inutile.
+echo 'Installazione finita. Controlla se Docker funziona con il comando docker ps, e se così non fosse, riesegui sudo usermod -aG docker $USER e esegui il logout e login dalla macchina in cui sei.'
 # echo 'Ecco le versioni '
 # docker -v
 # docker-compose -v
