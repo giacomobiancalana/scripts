@@ -16,10 +16,10 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
-HISTFILESIZE=10000
+HISTSIZE=20000
+HISTFILESIZE=20000
 
-# for history timestamps
+# for timestamps in history command
 HISTTIMEFORMAT="%d/%m/%y %T "
 
 # check the window size after each command and, if necessary,
@@ -49,17 +49,18 @@ esac
 #force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
+  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+  # We have color support; assume it's compliant with Ecma-48
+  # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+  # a case would tend to support setf rather than setaf.)
+  color_prompt=yes
+  else
+  color_prompt=
+  fi
 fi
 
-###################################
+############# GIT BRANCH NAME AND COLOR VARIABLES ##############
+
 # colors variables 
 RESTORE='\033[0m'
 
@@ -80,8 +81,8 @@ LCYAN='\033[01;36m'
 WHITE='\033[01;37m'
 
 
+# DISPLAY GIT BRANCH NAME
 ## oleksii code, modified-> FUNZIONA
-# Show git branch name
 force_color_prompt=yes
 color_prompt=yes
 parse_git_branch() {
@@ -97,26 +98,16 @@ unset color_prompt force_color_prompt
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-##
-
-## vecchio codice per display git branch
-# export PS1='\u@\h \w $(git branch --show-current 2>/dev/null)'
-# export BRANCH="($(git branch --show-current 2>/dev/null))"
-
-# if [ "$color_prompt" = yes ]; then
-#     PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$ "
-# else
-#     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$ '
-# fi
-# unset color_prompt force_color_prompt
-
-# # export PS1="$PS1 \[\033[00;35m\]($BRANCH)\[\033[00m\] $ "
-# # export PS1="$PS1 \[${YELLOW}\]($BRANCH)\[\033[00m\] $ "  # non capisco a cosa serva \[ e \] quando posso benissimo ometterli
-# export PS1="$PS1 ${YELLOW}$BRANCH\[\033[00m\] $ "
-##
 
 ###################################
 
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -175,11 +166,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
+# PATH
+export PATH=$HOME/.local/bin:$PATH
 
 ####### IMPORTANTE #######
 #######################################################################
-## INCLUDE CUSTOM `.bashrc` CODE
+## INCLUDE CUSTOM `.bashrc` CODE -> RUTTE LE MODIFICHE CUSTOM ANDRANNO SCRITTE LI'
 ##
 if [ -f ~/.bashrc_custom ]; then
     . ~/.bashrc_custom
