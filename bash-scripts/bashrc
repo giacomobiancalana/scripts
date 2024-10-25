@@ -59,7 +59,7 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-###################################
+############# GIT BRANCH NAME AND COLOR VARIABLES ##############
 # Colors variables 
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
@@ -86,19 +86,19 @@ LCYAN='\033[01;36m'
 # WHITE="\033[01;37m]"
 WHITE="\033[00m"
 
-# Show git branch name
+## DISPLAY GIT BRANCH NAME
 force_color_prompt=yes
 color_prompt=yes
 parse_git_branch() {
-  # git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-  git branch --show-current 2> /dev/null # ma non ha parentesi intorno, serve comando sed
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+  # git branch --show-current 2> /dev/null # ma non ha parentesi intorno, serve comando sed
 }
 
 # TOCAT='cat ~/.bashrc' puoi fare eval su questo
 DEB_CHROOT=${debian_chroot:+($debian_chroot)}
 if [ "$color_prompt" = yes ]; then
   # OLD PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\033[00m\] \[\033[01;34m\]\w\[\033[01;31m\] $(parse_git_branch)\[\033[00m\]\$ '
-  PS1="${DEB_CHROOT}${LGREEN}\u@${LCYAN}\h ${LRED}\w ${LBLUE}($(parse_git_branch))\[$WHITE\]\$ "
+  PS1="${DEB_CHROOT}${LGREEN}\u@${LCYAN}\h ${LRED}\w ${LBLUE}$(parse_git_branch)\[$WHITE\]\$ "
 else
   PS1="${DEB_CHROOT}\u@\h \w $(parse_git_branch)\$ "
 fi
@@ -173,7 +173,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
+# PATH
+export PATH=$HOME/.local/bin:$PATH
 
 ####### IMPORTANTE #######
 #######################################################################
