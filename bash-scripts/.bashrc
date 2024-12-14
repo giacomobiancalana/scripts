@@ -5,7 +5,7 @@
 # If not running interactively, don't do anything
 case $- in
   *i*) ;;
-    *) return;;
+  *) return;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -44,8 +44,8 @@ WHITE="\033[00m"
 ############################
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
-HISTFILESIZE=10000
+HISTSIZE=20000
+HISTFILESIZE=20000
 
 # for history timestamps
 MY_BASH_NOCOLOR="\033[0m"  #Come RESTORE
