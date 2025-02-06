@@ -49,7 +49,7 @@ HISTFILESIZE=20000
 
 # for history timestamps
 MY_BASH_NOCOLOR="\033[0m"  #Come RESTORE
-HISTTIMEFORMAT=`echo -e ${LCYAN}%%d/%m/%y ${LRED}%T $MY_BASH_NOCOLOR `
+HISTTIMEFORMAT=`echo -e ${LCYAN}%d/%m/%y ${LRED}%T $MY_BASH_NOCOLOR `
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
