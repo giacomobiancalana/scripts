@@ -53,7 +53,7 @@ HISTFILESIZE=20000
 
 # for history timestamps
 MY_BASH_NOCOLOR="\033[0m"  #Come RESTORE
-HISTTIMEFORMAT=`echo -e ${LCYAN}%d/%m/%y ${LRED}%T $MY_BASH_NOCOLOR `
+HISTTIMEFORMAT=`echo -e ${CYAN}%d/%m/%y ${PURPLE}%T $MY_BASH_NOCOLOR `
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -93,7 +93,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 
-## DISPLAY GIT BRANCH NAME
+##### DISPLAY GIT BRANCH NAME #####
 force_color_prompt=yes
 color_prompt=yes
 parse_git_branch() {
@@ -101,7 +101,6 @@ parse_git_branch() {
   # git branch --show-current 2> /dev/null # ma non ha parentesi intorno, serve comando sed
 }
 
-# TOCAT='cat ~/.bashrc' puoi fare eval su questo
 DEB_CHROOT=${debian_chroot:+($debian_chroot)}
 if [ "$color_prompt" = yes ]; then
   # OLD PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\033[00m\] \[\033[01;34m\]\w\[\033[01;31m\] $(parse_git_branch)\[\033[00m\]\$ '
@@ -110,15 +109,6 @@ else
   PS1="${DEB_CHROOT}\u@\h \w $(parse_git_branch)\$ "
 fi
 unset color_prompt force_color_prompt
- 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-##
-
-## vecchio codice per display git branch
-# export PS1='\u@\h \w $(git branch --show-current 2>/dev/null)'
-# export BRANCH="($(git branch --show-current 2>/dev/null))"
 
 ###################################
 
