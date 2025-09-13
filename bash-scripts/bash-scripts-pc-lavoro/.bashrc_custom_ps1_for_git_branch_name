@@ -1,0 +1,38 @@
+## DISPLAY GIT BRANCH NAME
+force_color_prompt=yes
+color_prompt=yes
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+  # TODO: comando sed con questa riga sotto
+  # git branch --show-current 2> /dev/null # ma non ha parentesi intorno, serve comando sed
+}
+
+# TOCAT='cat ~/.bashrc' puoi fare eval su questo
+
+###########################################
+## rimesso vecchio codice (funzionante)
+if [ "$color_prompt" = yes ]; then
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;31m\] $(parse_git_branch)\[\033[00m\]\$ '
+else
+  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w $(parse_git_branch)\$ '
+fi
+###########################################
+
+##################################
+# TODO: da controllare perché non cambia il nome del git branch sulla console quando cambio il branch
+# DEB_CHROOT=${debian_chroot:+($debian_chroot)}
+# PS1="${DEB_CHROOT}"
+# if [ "$color_prompt" = yes ]; then
+#   # OLD PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\033[00m\] \[\033[01;34m\]\w\[\033[01;31m\] $(parse_git_branch)\[\033[00m\]\$ '
+#   PS1="$PS1${LGREEN}\u@${LCYAN}\h ${LYELLOW}\w ${LRED}$(parse_git_branch)\[$WHITE\]\$ "
+# else
+#   PS1="$PS1\u@\h \w $(parse_git_branch)\$ "
+# fi
+##################################
+##################################
+## altro vecchio codice per display git branch
+# export PS1='\u@\h \w $(git branch --show-current 2>/dev/null)'
+# # e anche
+# export BRANCH="($(git branch --show-current 2>/dev/null))"
+
+###################################
