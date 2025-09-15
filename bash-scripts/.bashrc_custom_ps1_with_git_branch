@@ -1,0 +1,25 @@
+# File: $HOME/.bashrc_custom_ps1_with_git_branch
+# THIS FILE IS A USER-CUSTOM BASHRC FILE TO KEEP CLEAN THE DEFAULT ~/.barshrc FILE.
+# PUT HERE ANY CUSTOM CODE MANUALLY ADDED BY YOU
+
+force_color_prompt=yes
+color_prompt=yes
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+  # git branch --show-current 2> /dev/null # ma non ha parentesi intorno, serve comando sed
+}
+
+DEB_CHROOT=${debian_chroot:+($debian_chroot)}
+if [ "$color_prompt" = yes ]; then
+  PS1="${DEB_CHROOT}${BGreen}\u${BYellow}@${Green}\h${Color_Off}:${BBlue}\w"
+else
+  PS1="${DEB_CHROOT}\u@\h:\w"
+fi
+
+PS1="${PS1} ${URed}"'$(parse_git_branch)'"${Color_Off}\\n$ "
+# PS1 riscritto per aggiungere parse_git_branch: bisogna aggiungerlo con il singolo apice affinché il comando
+# parse_git_branch sia valutato solo alla fine, e non quando vengono compilati i file del .bashrc, come questo
+# in cui sto scrivendo: altrimenti prende in considerazione solo il branch (che potrebbe anche non esistere, se
+# sto in una cartella non versionata con git) in cui ci si trova quando si compila il .bashrc e i file che esso include.
+
+unset color_prompt force_color_prompt
