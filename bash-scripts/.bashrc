@@ -10,8 +10,8 @@ esac
 
 
 # ### COLORS AND OTHER VARIABLES CONFIGURATION ###
-if [ -f ~/.bashrc_colors ]; then
-  . ~/.bashrc_colors
+if [ -f ~/.bash_colors ]; then
+  . ~/.bash_colors
 fi
 
 
@@ -70,8 +70,8 @@ fi
 
 
 ########## PS1 WITH GIT BRANCH NAME ##########
-if [ -f ~/.bashrc_custom_ps1_with_git_branch ]; then
-  . ~/.bashrc_custom_ps1_with_git_branch
+if [ -f ~/.bash_ps1_with_git_branch ]; then
+  . ~/.bash_ps1_with_git_branch
 fi
 # Codice per PS1 originale
 # if [ "$color_prompt" = yes ]; then
@@ -81,7 +81,6 @@ fi
 # fi
 # unset color_prompt force_color_prompt
 ### -------------------------------------- ###
-
 
 
 # If this is an xterm set the title to user@host:dir
