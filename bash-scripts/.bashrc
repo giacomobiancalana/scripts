@@ -8,6 +8,14 @@ case $- in
       *) return;;
 esac
 
+
+# ### COLORS AND OTHER VARIABLES CONFIGURATION ###
+if [ -f ~/.bashrc_colors ]; then
+  . ~/.bashrc_colors
+fi
+
+
+# ### HISTORY CONFIGURATION ###
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -15,17 +23,13 @@ HISTCONTROL=ignoreboth
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# Colors variables and other variables
-if [ -f ~/.bashrc_colors ]; then
-  . ~/.bashrc_colors
-fi
-
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=20000
 HISTFILESIZE=20000
 HISTTIMEFORMAT="$(echo -e ${CYAN}%d/%m/%y ${PURPLE}%T ${RESTORE})"
 # serve "echo -e", perché mi sa che HISTTIMEFORMAT non supporta i colori
 # OLD_HISTTIMEFORMAT="%d/%m/%y %T "
+
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -64,6 +68,7 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+
 ########## PS1 WITH GIT BRANCH NAME ##########
 if [ -f ~/.bashrc_custom_ps1_with_git_branch ]; then
   . ~/.bashrc_custom_ps1_with_git_branch
@@ -77,9 +82,7 @@ fi
 # unset color_prompt force_color_prompt
 ### -------------------------------------- ###
 
-<<COMMENTO
-Prova commento
-COMMENTO
+
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -134,10 +137,18 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# NVM
+
+# ### NVM CONFIGURATION ###
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+
 # PATH
 export PATH=$HOME/.local/bin:$PATH
+
+
+##### INCLUDE CUSTOM bashrc CODE #####
+if [ -f ~/.bashrc_custom ]; then
+  . ~/.bashrc_custom
+fi

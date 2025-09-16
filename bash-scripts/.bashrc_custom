@@ -36,3 +36,8 @@ alias gloo2="git log --oneline | sed -n '2p' | sed 's/ .*//' | cat"
 
 alias gpuf="git push -f"
 ##############################
+
+# Commenti multilinea
+<<COMMENTO
+Prova commento
+COMMENTO
